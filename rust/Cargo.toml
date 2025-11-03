@@ -1,0 +1,25 @@
+[package]
+name = "resonant-protocol"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+byteorder = "1.5"
+zstd = "0.13"
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+chacha20poly1305 = { version = "0.10", features = ["std"] }
+rand = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+crc32fast = "1.4"
+bitflags = "2.6"
+anyhow = "1.0"
+
+[[example]]
+name = "send_think"
+path = "src/examples/send_think.rs"
+
+[[example]]
+name = "recv_think"
+path = "src/examples/recv_think.rs"
