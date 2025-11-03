@@ -88,7 +88,10 @@ fn handle_sync(frame: &VFrame) -> anyhow::Result<()> {
                         "dtype": ["f16", "i8", "q4", "sparse"]
                     }),
                 };
-                println!("   → Would respond with: {}", serde_json::to_string_pretty(&response)?);
+                println!(
+                    "   → Would respond with: {}",
+                    serde_json::to_string_pretty(&response)?
+                );
             }
             Err(e) => println!("   ⚠️  Could not parse JSON: {}", e),
         }
@@ -101,8 +104,13 @@ fn handle_think(frame: &VFrame) -> anyhow::Result<()> {
     println!("   [Think message - latent state]");
 
     for (idx, (meta, payload)) in frame.slices.iter().enumerate() {
-        println!("   Slice {}: {:?} shape={:?} size={} bytes",
-                 idx, meta.dtype, meta.shape, payload.len());
+        println!(
+            "   Slice {}: {:?} shape={:?} size={} bytes",
+            idx,
+            meta.dtype,
+            meta.shape,
+            payload.len()
+        );
     }
 
     // In real implementation: process latent state
@@ -116,8 +124,12 @@ fn handle_critique(frame: &VFrame) -> anyhow::Result<()> {
 
     if frame.slices.len() >= 2 {
         let (vec_meta, vec_payload) = &frame.slices[0];
-        println!("   Divergence vector: {:?} shape={:?} size={}",
-                 vec_meta.dtype, vec_meta.shape, vec_payload.len());
+        println!(
+            "   Divergence vector: {:?} shape={:?} size={}",
+            vec_meta.dtype,
+            vec_meta.shape,
+            vec_payload.len()
+        );
 
         let (_, explain_payload) = &frame.slices[1];
         if let Ok(json) = serde_json::from_slice::<serde_json::Value>(explain_payload) {

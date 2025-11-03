@@ -12,7 +12,11 @@ pub fn seal_xchacha(key: &[u8; 32], nonce: &[u8; 24], plaintext: &[u8]) -> anyho
 }
 
 /// Decrypt data using XChaCha20-Poly1305
-pub fn open_xchacha(key: &[u8; 32], nonce: &[u8; 24], ciphertext: &[u8]) -> anyhow::Result<Vec<u8>> {
+pub fn open_xchacha(
+    key: &[u8; 32],
+    nonce: &[u8; 24],
+    ciphertext: &[u8],
+) -> anyhow::Result<Vec<u8>> {
     let cipher = XChaCha20Poly1305::new(key.into());
     cipher
         .decrypt(XNonce::from_slice(nonce), ciphertext)
