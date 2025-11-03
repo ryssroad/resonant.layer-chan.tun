@@ -1,5 +1,7 @@
 # 🌀 Resonant Protocol
 
+> **[📖 Russian version / Русская версия](README.ru.md)** | **[🎯 Pitch Deck / Питчфорк](PITCH.ru.md)**
+
 **Model-to-model communication through latent state transfer**
 
 Resonant Protocol enables direct neural network communication by transmitting hidden states, KV-caches, and embeddings. Built on the Kimi K2 specification with extensions for embedding space verification, critique messages, and flexible data types.
