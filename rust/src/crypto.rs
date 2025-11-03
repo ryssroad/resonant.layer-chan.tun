@@ -6,6 +6,7 @@ use chacha20poly1305::{
 /// Encrypt data using XChaCha20-Poly1305
 pub fn seal_xchacha(key: &[u8; 32], nonce: &[u8; 24], plaintext: &[u8]) -> anyhow::Result<Vec<u8>> {
     let cipher = XChaCha20Poly1305::new(key.into());
+    #[allow(deprecated)]
     cipher
         .encrypt(XNonce::from_slice(nonce), plaintext)
         .map_err(|e| anyhow::anyhow!("Encryption failed: {}", e))
@@ -18,6 +19,7 @@ pub fn open_xchacha(
     ciphertext: &[u8],
 ) -> anyhow::Result<Vec<u8>> {
     let cipher = XChaCha20Poly1305::new(key.into());
+    #[allow(deprecated)]
     cipher
         .decrypt(XNonce::from_slice(nonce), ciphertext)
         .map_err(|e| anyhow::anyhow!("Decryption failed: {}", e))
